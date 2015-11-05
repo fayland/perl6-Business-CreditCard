@@ -37,16 +37,16 @@ sub cardtype($num is copy) is export {
 
     return 'Dankort' if $f4 == 5019 and $len == 16;
 
-    # 50, 56-69
-    return 'Maestro' if ( $f2 == 50 || ($f2 >= 56 and $f2 <= 69) )
-        and $len >= 12 and $len <= 19;
-
     return 'Solo' if ($f4 == 6334 || $f4 == 6767) and ($len == 16 || $len == 18 || $len == 19);
     return 'Switch' if ($f4 == 4903 || $f4 == 4905 || $f4 == 4911 || $f4 == 4936 || $f6 == 564182 || $f6 == 633110 || $f4 == 6333 || $f4 == 6759) and ($len == 16 || $len == 18 || $len == 19);
 
     return 'ChinaUnionPay' if $f2 == 62 and $len >= 16 and $len <= 19;
 
     return 'UATP' if $f1 == 1 and $len == 15;
+
+    # 50, 56-69
+    return 'Maestro' if ( $f2 == 50 || ($f2 >= 56 and $f2 <= 69) )
+        and $len >= 12 and $len <= 19;
 
     return '';
 }
