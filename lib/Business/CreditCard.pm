@@ -31,9 +31,9 @@ sub cardtype($num is copy) is export {
     return 'InterPayment' if $f3 eq '639' and $len >= 16 and $len <= 19;
     return 'InstaPayment' if $f3 >= 637 and $f3 <= 639 and $len == 16;
     return 'JCB' if ($f4 >= 3528 and $f4 <= 3589) and $len == 16;
+    return 'JCB' if ($f4 == 2131 or $f4 == 1800) and $len == 15;
 
     return 'Laser' if $f4 == 6304 or $f4 == 6706 or $f4 == 6771 or $f4 == 6709;
-
 
     return 'Dankort' if $f4 == 5019 and $len == 16;
 
